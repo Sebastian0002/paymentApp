@@ -9,11 +9,16 @@ environment:
 dependencies:
   animate_do: ^3.3.4
   bloc: ^8.1.4
+  dio: ^5.7.0
   equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
-  flutter_credit_card: ^4.0.1
+  flutter_credit_card:
+    git:
+      url: https://github.com/Sebastian0002/flutter_credit_card.git
+      ref: master
+  flutter_stripe: ^11.3.0
   font_awesome_flutter: ^10.8.0
   meta: ^1.15.0
 

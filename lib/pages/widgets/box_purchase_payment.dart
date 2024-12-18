@@ -28,7 +28,7 @@ class PurchasePayment extends StatelessWidget {
         ]
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -42,7 +42,8 @@ class PurchasePayment extends StatelessWidget {
             ),
         
             MaterialButton(
-              onPressed: (){},
+              onPressed: ()async{
+              },
               color: Colors.black,
               height: 45,
               minWidth: 150,

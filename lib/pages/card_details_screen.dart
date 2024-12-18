@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
-import 'package:payment_app/bloc/card/card_bloc.dart';
 import 'package:payment_app/domain/model/credit_card.dart';
 import 'package:payment_app/pages/widgets/widgets.dart';
+import 'package:payment_app/services/bloc/blocs.dart';
 
 class CardDetailsScreen extends StatelessWidget {
-  
-  static String route = "/payment_screen";
   
   const CardDetailsScreen({
     super.key,
@@ -27,7 +25,7 @@ class CardDetailsScreen extends StatelessWidget {
 
       body: Padding(
         padding: const EdgeInsets.only(top: 40),
-        child: BlocBuilder<CardBloc, CardState>(
+        child: BlocBuilder<PaymentBloc, PaymentState>(
           builder: (context, state) {
             return Column(
                   mainAxisSize: MainAxisSize.min,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:payment_app/bloc/card/card_bloc.dart';
 import 'package:payment_app/domain/model/credit_card.dart';
+import 'package:payment_app/services/bloc/blocs.dart';
 
 class BoxDetailsCard extends StatelessWidget {
   const BoxDetailsCard({super.key, required this.card});
@@ -11,10 +11,8 @@ class BoxDetailsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CardBloc, CardState>(
+    return BlocBuilder<PaymentBloc, PaymentState>(
       builder: (context, state) {
-        
-        final cardBloc = context.read<CardBloc>();
 
         return Container(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
@@ -29,7 +27,7 @@ class BoxDetailsCard extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      cardBloc.add(ShowDetailsCardEvent(isShowDetails: !state.isShowDetails));
+                      context.read<PaymentBloc>().add(SwitchShowDetailsCardEvent());
                     },
                     splashColor: Colors.transparent,
                     borderRadius: BorderRadius.circular(10),
@@ -84,6 +82,7 @@ class BoxDetailsCard extends StatelessWidget {
     );
   }
 }
+
 class BoxShortDetailsCard extends StatelessWidget {
   const BoxShortDetailsCard({super.key, required this.card});
 
@@ -91,10 +90,8 @@ class BoxShortDetailsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CardBloc, CardState>(
+    return BlocBuilder<PaymentBloc, PaymentState>(
       builder: (context, state) {
-        
-        final cardBloc = context.read<CardBloc>();
 
         return Container(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
@@ -109,7 +106,7 @@ class BoxShortDetailsCard extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      cardBloc.add(ShowDetailsCardEvent(isShowDetails: !state.isShowDetails));
+                      context.read<PaymentBloc>().add(SwitchShowDetailsCardEvent());
                     },
                     splashColor: Colors.transparent,
                     borderRadius: BorderRadius.circular(10),

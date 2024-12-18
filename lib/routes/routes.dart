@@ -6,7 +6,8 @@ class Routes {
   static String initialRoutes = HomePage.route;
 
   static final Map<String,WidgetBuilder> routes = {
-    HomePage.route : (context) => const HomePage(),
+    HomePage.route : (_) => const HomePage(),
+    SuccesScreen.route : (_) => const SuccesScreen()
   };
 
 }
