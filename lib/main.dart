@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:payment_app/routes/routes.dart';
+import 'package:payment_app/services/stripe_service.dart';
+import 'package:payment_app/ui/routes/routes.dart';
 import 'package:payment_app/services/bloc/blocs.dart';
 
 void main() {
+  StripeService().init();
+  
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (_) => PaymentBloc())

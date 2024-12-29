@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:payment_app/domain/model/credit_card.dart';
-import 'package:payment_app/pages/widgets/widgets.dart';
+import 'package:payment_app/ui/pages/widgets/widgets.dart';
 import 'package:payment_app/services/bloc/blocs.dart';
 
 class CardDetailsScreen extends StatelessWidget {

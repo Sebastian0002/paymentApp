@@ -7,8 +7,9 @@ import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:payment_app/constants/credit_cards.dart';
 import 'package:payment_app/domain/model/credit_card.dart';
-import 'package:payment_app/pages/pages.dart';
-import 'package:payment_app/pages/widgets/widgets.dart';
+import 'package:payment_app/services/stripe_service.dart';
+import 'package:payment_app/ui/pages/pages.dart';
+import 'package:payment_app/ui/pages/widgets/widgets.dart';
 import 'package:payment_app/services/bloc/payment/payment_bloc.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,6 +19,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final stripe = StripeService();
+    final paymentBloc = context.read<PaymentBloc>();
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
@@ -29,7 +32,20 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.add))],
+        actions: [IconButton(onPressed: () async{
+
+          final res = await stripe.payWithNewCard(
+            amount: paymentBloc.state.amountString, 
+            currency: paymentBloc.state.moneyIso,
+          );
+
+          if(res.res){
+            customAlertMessage(title: const Text("Payment succeeded"), content: const Text("Purchase succesfull"));
+          }
+          else{
+            customAlertMessage(title: const Text("An error ocurred"), content: Text(res.msg!));
+          }
+        }, icon: const Icon(Icons.add))],
       ),
       body: const CardList(),
     );

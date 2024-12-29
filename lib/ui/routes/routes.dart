@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:payment_app/pages/pages.dart';
+import 'package:payment_app/ui/pages/pages.dart';
 
 class Routes {
 

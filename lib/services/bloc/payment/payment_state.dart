@@ -2,7 +2,7 @@ part of 'payment_bloc.dart';
 
 sealed class PaymentState extends Equatable {
   const PaymentState({
-    this.amount = 0, 
+    this.amount = 10.00, 
     this.moneyIso = 'USD',
     this.isSelectedCard = false,
     this.isShowDetails = false,
@@ -10,6 +10,7 @@ sealed class PaymentState extends Equatable {
   });
 
   final double amount;
+  String get amountString => (amount*100).floor().toString();
   final String moneyIso;
   final bool isSelectedCard;
   final CreditCardCustom? selectedCard;
