@@ -40,13 +40,16 @@ class BodyHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      spacing: 30,
-      children: [
-        SeachField(),
-        TopBanner(),
-        BodyHomeItems()
-      ],
+    return const SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
+      child: Column(
+        spacing: 30,
+        children: [
+          SeachField(),
+          TopBanner(),
+          BodyHomeItems()
+        ],
+      ),
     );
   }
 }

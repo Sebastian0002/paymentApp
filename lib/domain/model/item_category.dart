@@ -1,11 +1,14 @@
 class ItemCategory {
 
-  String name;
-  Category category;
+  final String name;
+  final Category category;
+  final bool? isSelected;
+
 
   ItemCategory({
     required this.name,
-    required this.category
+    required this.category,
+    this.isSelected = false
   });
 }
 
