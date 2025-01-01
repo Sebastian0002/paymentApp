@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:payment_app/constants/items.dart';
 import 'package:payment_app/domain/model/item_category.dart';
 import 'package:payment_app/ui/pages/home/widgets/card_item.dart';
+import 'package:payment_app/ui/pages/widgets/widgets.dart';
 import 'package:payment_app/ui/theme/custom_colors.dart';
 
 class BodyHomeItems extends StatelessWidget {
@@ -81,18 +82,8 @@ class _CategoryButton extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(12),
       onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-            color: isSelected ? CustomColors.primary : Colors.transparent,
-            borderRadius: BorderRadius.circular(12),
-            border: isSelected ? null : Border.all(width: 2)),
-        child: Text(category.name,
-            style: TextStyle(
-                color: isSelected ? Colors.white : null,
-                fontWeight: FontWeight.w600)),
-      ),
+      child: CardSelected(isSelected: isSelected, title: category.name),
     );
   }
 }
+

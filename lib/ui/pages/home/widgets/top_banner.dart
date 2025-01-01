@@ -68,10 +68,10 @@ class TopBanner extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: -10,
-            right: 10,
-            bottom: 0,
-            child: Image.asset("assets/ps5.png"))
+              top: -10,
+              right: 10,
+              bottom: 0,
+              child: Image.asset("assets/ps5.png"))
         ],
       ),
     );

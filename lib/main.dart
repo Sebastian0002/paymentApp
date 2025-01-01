@@ -25,8 +25,10 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           appBarTheme: const AppBarTheme(color: Colors.white),
-          primaryColor: CustomColors.primary
-        ),
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+              selectedItemColor: CustomColors.primary,
+              unselectedItemColor: Colors.black
+              )),
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.initialRoutes,
       routes: Routes.routes,

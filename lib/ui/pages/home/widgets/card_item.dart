@@ -11,7 +11,8 @@ class CardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (_)=> const DescriptionPage()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (_) => DescriptionPage(item: item)));
       },
       child: Column(
         children: [
@@ -35,17 +36,28 @@ class CardItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: 95,
-                      child: Text(item.name, style: TextStyle( fontWeight: FontWeight.w600, fontSize: 12,color: Colors.grey[600]),)),
+                        width: 95,
+                        child: Text(
+                          item.name,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12,
+                              color: Colors.grey[600]),
+                        )),
                     Row(
                       children: [
-                        const Icon(Icons.star_rate_rounded, color: Colors.amber),
+                        const Icon(Icons.star_rate_rounded,
+                            color: Colors.amber),
                         Text(item.stars.toString()),
                       ],
                     ),
                   ],
                 ),
-                Text('\$${item.price}', style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w700),)
+                Text(
+                  '\$${item.price}',
+                  style: const TextStyle(
+                      fontSize: 17, fontWeight: FontWeight.w700),
+                )
               ],
             ),
           ),

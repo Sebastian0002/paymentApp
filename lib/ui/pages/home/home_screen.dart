@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:payment_app/constants/items.dart';
 import 'package:payment_app/ui/pages/home/widgets/widgets_home.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   static const String route = '/home_page';
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  int _index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +38,16 @@ class HomePage extends StatelessWidget {
         padding: EdgeInsets.only(top: 10),
         child: BodyHome(),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: bottomItems, 
+        currentIndex: _index,
+        iconSize: 25,
+        onTap: (index){
+          setState(() {
+            _index = index;
+          });
+        },
+        ),
     );
   }
 }

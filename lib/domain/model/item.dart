@@ -4,7 +4,7 @@ class Item {
     final String name;
     final String image;
     final double price;
-    final double stars;
+    final String stars;
     final String description;
     final int likes;
     final Category category;
