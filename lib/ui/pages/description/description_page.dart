@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:payment_app/constants/items.dart';
 import 'package:payment_app/domain/model/item.dart';
 import 'package:payment_app/ui/pages/description/widgets/widgets.dart';
-import 'package:payment_app/ui/pages/widgets/widgets.dart';
 import 'package:payment_app/ui/theme/custom_colors.dart';
 
 class DescriptionPage extends StatelessWidget {
@@ -19,6 +17,31 @@ class DescriptionPage extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
+            leadingWidth: 45,
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.pop(context);
+                },
+                child: const CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: Icon(Icons.arrow_back_ios_new_rounded, size: 18, color: Colors.black),
+                  ),
+              ),
+            ),
+            actions: const [
+              CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Icon(Icons.favorite, color: Colors.red,),
+              ),
+              SizedBox(width: 10),
+              CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Icon(Icons.share, color: Colors.black),
+              ),
+              SizedBox(width: 10)
+            ],
             expandedHeight: MediaQuery.sizeOf(context).height * 0.48,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
@@ -35,6 +58,9 @@ class DescriptionPage extends StatelessWidget {
                 topRight: Radius.circular(30),
               ),
               child: Container(
+                height: item.properties == null
+                    ? MediaQuery.sizeOf(context).height * 0.35
+                    : null,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                 ),
@@ -66,40 +92,7 @@ class DescriptionPage extends StatelessWidget {
                       const SizedBox(height: 20),
                       Text(item.description,
                           style: const TextStyle(fontSize: 15)),
-                      if (item.properties?.storages?.isNotEmpty ?? false)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Storage",
-                                style: TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.w500),
-                              ),
-                              const SizedBox(height: 10),
-                              SizedBox(
-                                height: 40,
-                                child: ListView.separated(
-                                  separatorBuilder: (context, index) {
-                                    return const SizedBox(width: 10);
-                                  },
-                                  itemCount: item.properties!.storages!.length,
-                                  physics: const BouncingScrollPhysics(),
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    final storages = item.properties!.storages!;
-                                    return CardSelected(
-                                        isSelected: false,
-                                        title:
-                                            "${getConvertedStorage(storages[index])} ${getStorageReference(storages[index])}");
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                      PropertiesDetails(item: item),
                     ],
                   ),
                 ),
