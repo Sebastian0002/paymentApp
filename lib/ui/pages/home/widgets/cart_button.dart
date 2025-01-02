@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payment_app/ui/pages/pages.dart';
 
 class CarButton extends StatelessWidget {
   const CarButton({super.key});
@@ -15,7 +16,7 @@ class CarButton extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(100),
               onTap: (){
-            
+                Navigator.pushNamed(context, CartPage.route);
               },
               child: Container(
                 decoration: BoxDecoration(

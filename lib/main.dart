@@ -27,8 +27,7 @@ class MainApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(color: Colors.white),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
               selectedItemColor: CustomColors.primary,
-              unselectedItemColor: Colors.black
-              )),
+              unselectedItemColor: Colors.black)),
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.initialRoutes,
       routes: Routes.routes,
