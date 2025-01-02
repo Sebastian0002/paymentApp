@@ -6,6 +6,7 @@ class ItemCartClass {
   final int quantity;
 
   double get payPrice => finalPrice + 15.00;
+  String get formattedPrice => finalPrice.toStringAsFixed(2);
 
 
     ItemCartClass({

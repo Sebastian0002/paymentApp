@@ -27,8 +27,8 @@ class CustomBottomNavigatorCart extends StatelessWidget {
           child: MaterialButton(
             onPressed: () async{
               stripe.payWithNewCard(
-                amount: '12.00', 
-                currency: 'US'
+                amount: (payPrice*100).floor().toString(), 
+                currency: 'USD'
               );
             },
             minWidth: MediaQuery.sizeOf(context).width*0.45,

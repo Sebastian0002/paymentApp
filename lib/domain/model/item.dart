@@ -20,6 +20,8 @@ class Item {
         required this.category,
         this.properties,
     });
+
+    String get formattedPrice => price.toStringAsFixed(2);
 }
 
 class Properties {

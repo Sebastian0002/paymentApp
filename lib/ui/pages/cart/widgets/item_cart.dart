@@ -60,7 +60,7 @@ class ItemCart extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        "\$${itemCart.finalPrice}",
+                        "\$${itemCart.formattedPrice}",
                         style: const TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 20),
                       ),
@@ -72,7 +72,7 @@ class ItemCart extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           onTap: (){},
                           child: Container(
-                            padding: const EdgeInsets.all(5),
+                            padding: const EdgeInsets.all(3),
                             decoration: BoxDecoration(
                               color: Colors.transparent,
                               borderRadius: BorderRadius.circular(10),
@@ -88,7 +88,7 @@ class ItemCart extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           onTap: (){},
                           child: Container(
-                            padding: const EdgeInsets.all(5),
+                            padding: const EdgeInsets.all(3),
                             decoration: BoxDecoration(
                               color: Colors.transparent,
                               borderRadius: BorderRadius.circular(10),

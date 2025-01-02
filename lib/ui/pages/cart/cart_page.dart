@@ -81,7 +81,7 @@ class CartPage extends StatelessWidget {
                 const SizedBox(height: 10),
                 _PayItems(
                   title: 'Total:',
-                  price: (itemCart.finalPrice + 15.00).toString(),
+                  price: (itemCart.payPrice).toString(),
                 )
               ],
             )

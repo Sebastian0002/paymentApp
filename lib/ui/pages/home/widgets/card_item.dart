@@ -54,7 +54,7 @@ class CardItem extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  '\$${item.price}',
+                  '\$${item.formattedPrice}',
                   style: const TextStyle(
                       fontSize: 17, fontWeight: FontWeight.w700),
                 )
