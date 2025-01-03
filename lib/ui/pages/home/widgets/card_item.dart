@@ -9,10 +9,15 @@ class CardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const Duration duration = Duration(milliseconds: 300);
     return GestureDetector(
       onTap: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (_) => DescriptionPage(item: item)));
+            PageRouteBuilder(
+            transitionDuration: duration ,
+            reverseTransitionDuration: duration,
+            pageBuilder: (ctx, animation, _) => FadeTransition(
+                opacity: animation, child: DescriptionPage(item: item))));
       },
       child: Column(
         children: [
@@ -24,7 +29,9 @@ class CardItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               color: Colors.grey[200],
             ),
-            child: Image.asset(item.image),
+            child: Hero(
+              tag: 'Image-hero-${item.image}',
+              child: Image.asset(item.image)),
           ),
           const SizedBox(height: 10),
           Padding(

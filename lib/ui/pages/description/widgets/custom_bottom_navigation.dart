@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:payment_app/domain/model/item.dart';
+import 'package:payment_app/ui/pages/constants/constants.dart';
 import 'package:payment_app/ui/theme/custom_colors.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
@@ -9,19 +10,15 @@ class CustomBottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool hasHomeIndicator() {
-      final viewPadding = MediaQuery.of(context).viewPadding;
-      return viewPadding.bottom > 0;
-    }
 
     return Container(
       decoration: const BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(blurRadius: 2, color: Colors.black54, offset: Offset(0, 1))
       ]),
       width: MediaQuery.sizeOf(context).width,
-      height: hasHomeIndicator() ? 100 : 70,
+      height: getHeightOfBottomNavigatior(context),
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 20, left: 30, right: 30),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

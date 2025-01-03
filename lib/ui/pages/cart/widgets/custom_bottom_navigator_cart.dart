@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:payment_app/services/stripe_service.dart';
+import 'package:payment_app/ui/pages/constants/constants.dart';
 import 'package:payment_app/ui/theme/custom_colors.dart';
 
 class CustomBottomNavigatorCart extends StatelessWidget {
@@ -10,16 +11,12 @@ class CustomBottomNavigatorCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final stripe = StripeService();
-    bool hasHomeIndicator() {
-      final viewPadding = MediaQuery.of(context).viewPadding;
-      return viewPadding.bottom > 0;
-    }
     return Container(
       decoration: const BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(blurRadius: 2, color: Colors.black54, offset: Offset(0, 1))
       ]),
       width: MediaQuery.sizeOf(context).width,
-      height: hasHomeIndicator() ? 100 : 70,
+      height: getHeightOfBottomNavigatior(context),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
         child: ClipRRect(

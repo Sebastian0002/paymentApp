@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:payment_app/domain/model/item.dart';
+import 'package:payment_app/ui/pages/constants/constants.dart';
 import 'package:payment_app/ui/pages/description/widgets/widgets.dart';
 import 'package:payment_app/ui/theme/custom_colors.dart';
 
@@ -21,19 +22,23 @@ class DescriptionPage extends StatelessWidget {
             leading: Padding(
               padding: const EdgeInsets.only(left: 10),
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.pop(context);
                 },
                 child: const CircleAvatar(
                   backgroundColor: Colors.white,
-                  child: Icon(Icons.arrow_back_ios_new_rounded, size: 18, color: Colors.black),
-                  ),
+                  child: Icon(Icons.arrow_back_ios_new_rounded,
+                      size: 18, color: Colors.black),
+                ),
               ),
             ),
             actions: const [
               CircleAvatar(
                 backgroundColor: Colors.white,
-                child: Icon(Icons.favorite, color: Colors.red,),
+                child: Icon(
+                  Icons.favorite,
+                  color: Colors.red,
+                ),
               ),
               SizedBox(width: 10),
               CircleAvatar(
@@ -48,7 +53,9 @@ class DescriptionPage extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   padding: const EdgeInsets.all(70),
                   color: Colors.grey[200],
-                  child: Image.asset(item.image)),
+                  child: Hero(
+                    tag: 'Image-hero-${item.image}',
+                    child: Image.asset(item.image))),
             ),
           ),
           SliverToBoxAdapter(
@@ -59,7 +66,8 @@ class DescriptionPage extends StatelessWidget {
               ),
               child: Container(
                 height: item.properties == null
-                    ? MediaQuery.sizeOf(context).height * 0.35
+                    ? (MediaQuery.sizeOf(context).height * 0.52) -
+                        getHeightOfBottomNavigatior(context)
                     : null,
                 decoration: const BoxDecoration(
                   color: Colors.white,
