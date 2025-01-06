@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:payment_app/domain/model/item.dart';
+import 'package:payment_app/domain/model/item_cart.dart';
+import 'package:payment_app/services/cubit/cubits.dart';
 import 'package:payment_app/ui/pages/constants/constants.dart';
 import 'package:payment_app/ui/theme/custom_colors.dart';
 
@@ -10,7 +13,7 @@ class CustomBottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    final cartCubit = context.read<CartCubit>();
     return Container(
       decoration: const BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(blurRadius: 2, color: Colors.black54, offset: Offset(0, 1))
@@ -27,7 +30,18 @@ class CustomBottomNavigation extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  cartCubit.addItem(
+                    ItemCartClass(
+                      name: item.name, 
+                      image: item.image, 
+                      price: item.price,
+                      finalProperties: [
+                        item.properties?.colors?[0], 
+                        item.properties?.storages?[0],
+                      ])..setQuantity = 1
+                    );
+                },
                 minWidth: MediaQuery.sizeOf(context).width*0.45,
                 height: 55,
                 color: CustomColors.primary,

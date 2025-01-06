@@ -1,19 +1,22 @@
-class ItemCartClass {
+class ItemCartClass with ModifyCart {
   final String name;
   final String image;
-  final double finalPrice;
+  final double price;
   final List<dynamic> finalProperties;
-  final int quantity;
 
-  double get payPrice => finalPrice + 15.00;
+  double get finalPrice => price * quantity;
   String get formattedPrice => finalPrice.toStringAsFixed(2);
 
 
     ItemCartClass({
         required this.name,
         required this.image,
-        required this.finalPrice,
+        required this.price,
         required this.finalProperties,
-        required this.quantity
     });
+}
+
+mixin ModifyCart {
+  int quantity = 0;
+  set setQuantity(int quantity) => this.quantity = quantity;
 }

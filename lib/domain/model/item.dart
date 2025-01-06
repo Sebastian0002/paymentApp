@@ -7,7 +7,7 @@ class Item {
     final String stars;
     final String description;
     final int likes;
-    final Category category;
+    final EnumItemCategory category;
     final Properties? properties;
 
     Item({

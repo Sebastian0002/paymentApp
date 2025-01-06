@@ -1,18 +1,21 @@
-class ItemCategory {
-
+class ItemCategory with ChangeSelectedCategory {
   final String name;
-  final Category category;
-  final bool? isSelected;
+  final EnumItemCategory category;
 
 
   ItemCategory({
     required this.name,
     required this.category,
-    this.isSelected = false
   });
 }
 
-enum Category {
+mixin ChangeSelectedCategory{
+  bool? isSelected = false;
+  set setSelected (bool isSelected) => this.isSelected = isSelected;
+
+}
+
+enum EnumItemCategory {
   all,
   headphones,
   smartphones,
