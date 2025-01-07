@@ -1,6 +1,8 @@
 import 'package:payment_app/domain/model/item_category.dart';
+import 'package:uuid/uuid.dart';
 
 class Item {
+    final String id = const Uuid().v4();
     final String name;
     final String image;
     final double price;

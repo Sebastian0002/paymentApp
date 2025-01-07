@@ -12,7 +12,6 @@ class ItemCategory with ChangeSelectedCategory {
 mixin ChangeSelectedCategory{
   bool? isSelected = false;
   set setSelected (bool isSelected) => this.isSelected = isSelected;
-
 }
 
 enum EnumItemCategory {

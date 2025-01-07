@@ -11,8 +11,10 @@ class ItemCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartCubit = context.read<CartCubit>();
     return BlocBuilder<CartCubit, CartState>(
       builder: (_, state) {
+        final item = state.itemsCart[index];
         return SizedBox(
           height: 150,
           child: Row(
@@ -23,11 +25,12 @@ class ItemCart extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
                 padding: const EdgeInsets.all(15),
                 width: 130,
+                height: 150,
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: Image.asset(state.itemsCart[index].image, fit: BoxFit.contain),
+                child: Image.asset(item.image, fit: BoxFit.contain),
               ),
               const SizedBox(width: 15),
               Expanded(
@@ -43,19 +46,21 @@ class ItemCart extends StatelessWidget {
                         children: [
                           Expanded(
                               child: Text(
-                            state.itemsCart[index].name,
+                            item.name,
                             style: const TextStyle(
                                 fontWeight: FontWeight.w500, fontSize: 16),
                           )),
                           const SizedBox(width: 10),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              cartCubit.removeItem(item);
+                            },
                             child: const Icon(Icons.close,
                                 color: Colors.grey, size: 22),
                           )
                         ],
                       ),
-                      ...state.itemsCart[index].finalProperties.map((e) {
+                      ...item.finalProperties.map((e) {
                         return Text(
                           e != null ? e.toString() : '',
                           style: TextStyle(
@@ -69,16 +74,18 @@ class ItemCart extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              "\$${state.itemsCart[index].formattedPrice}",
+                              "\$${item.formattedPrice}",
                               style: const TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 20),
+                                  fontWeight: FontWeight.w600, fontSize: 18),
                             ),
                           ),
                           const SizedBox(width: 10),
                           Row(children: [
                             InkWell(
                               borderRadius: BorderRadius.circular(10),
-                              onTap: () {},
+                              onTap: () {
+                                cartCubit.decraseItemQuantity(item);
+                              },
                               child: Container(
                                 padding: const EdgeInsets.all(3),
                                 decoration: BoxDecoration(
@@ -93,15 +100,17 @@ class ItemCart extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 10),
-                            const Text(
-                              "1",
-                              style: TextStyle(
+                            Text(
+                              item.quantity.toString(),
+                              style: const TextStyle(
                                   fontSize: 17, fontWeight: FontWeight.w500),
                             ),
                             const SizedBox(width: 10),
                             InkWell(
                               borderRadius: BorderRadius.circular(10),
-                              onTap: () {},
+                              onTap: () {
+                                cartCubit.addItem(item);
+                              },
                               child: Container(
                                 padding: const EdgeInsets.all(3),
                                 decoration: BoxDecoration(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:payment_app/domain/model/item.dart';
-import 'package:payment_app/domain/model/item_cart.dart';
 import 'package:payment_app/domain/model/item_category.dart';
 
 const String _asset = 'assets/';
@@ -159,13 +158,3 @@ List<BottomNavigationBarItem> bottomItems = [
       backgroundColor: Colors.white,
       label: "Profile"),
 ];
-
-ItemCartClass itemCart = ItemCartClass(
-  name: items[3].name, 
-  image: items[3].image, 
-  price: items[3].price, 
-  finalProperties: [
-    items[3].properties?.storages?[0],
-    items[3].properties?.colors?[0],
-  ]
-);

@@ -49,48 +49,78 @@ class CartPage extends StatelessWidget {
         ),
         body: BlocBuilder<CartCubit, CartState>(
           builder: (_, state) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.6,
-                    child: ListView.separated(
-                      physics: const BouncingScrollPhysics(),
-                      separatorBuilder: (context, index) {
-                        return const Divider(color: Colors.black12);
-                      },
-                      itemCount: state.itemsCart.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ItemCart(index: index);
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Column(
+            if (state.itemsCart.isEmpty) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Center(
+                  child: Column(
                     children: [
-                      _PayItems(
-                        title: 'Subtotal:',
-                        price: '0',
-                      ),
-                      const SizedBox(height: 10),
-                      _PayItems(
-                        title: 'DeliveryFee:',
-                        price: state.deliveryFee.toStringAsFixed(2),
-                      ),
-                      const SizedBox(height: 10),
-                      _PayItems(
-                        title: 'Total:',
-                        price: (900).toString(),
-                      )
+                      SizedBox(
+                      width: MediaQuery.sizeOf(context).width,
+                      child: Image.asset('assets/empty_cart.png', fit: BoxFit.cover)),
+                      const Text('!Ups! it looks like you do not have any item added yet.', style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                      const SizedBox(height: 30),
+                      ElevatedButton(onPressed: (){
+                        Navigator.pop(context);
+                      }, child: const Text('¡Go Shop!', style: TextStyle(color: Colors.white),))
                     ],
-                  )
-                ],
-              ),
-            );
+                  )),
+              );
+            } else {
+              return _BodyItems(
+                state: state,
+              );
+            }
           },
         ),
-        bottomNavigationBar: const CustomBottomNavigatorCart(payPrice: 900));
+        bottomNavigationBar: const CustomBottomNavigatorCart());
+  }
+}
+
+class _BodyItems extends StatelessWidget {
+  const _BodyItems({required this.state});
+  final CartState state;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Column(
+        children: [
+          SizedBox(
+            height: MediaQuery.sizeOf(context).height * 0.6,
+            child: ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              separatorBuilder: (context, index) {
+                return const Divider(color: Colors.black12);
+              },
+              itemCount: state.itemsCart.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ItemCart(index: index);
+              },
+            ),
+          ),
+          const SizedBox(height: 20),
+          Column(
+            children: [
+              _PayItems(
+                title: 'Subtotal:',
+                price: state.formattedSubtotal,
+              ),
+              const SizedBox(height: 10),
+              _PayItems(
+                title: 'DeliveryFee:',
+                price: state.deliveryFee.toStringAsFixed(2),
+              ),
+              const SizedBox(height: 10),
+              _PayItems(
+                title: 'Total:',
+                price: state.formattedTotal,
+              )
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
 

@@ -25,24 +25,28 @@ class CustomBottomNavigation extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("\$${item.price.toString()}", style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
+            Text(
+              "\$${item.price.toString()}",
+              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+            ),
             const SizedBox(width: 20),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: MaterialButton(
                 onPressed: () {
-                  cartCubit.addItem(
-                    ItemCartClass(
-                      name: item.name, 
-                      image: item.image, 
+                  cartCubit.addItem(ItemCartClass(
+                      id: item.id,
+                      name: item.name,
+                      image: item.image,
                       price: item.price,
                       finalProperties: [
-                        item.properties?.colors?[0], 
+                        item.properties?.colors?[0],
                         item.properties?.storages?[0],
-                      ])..setQuantity = 1
-                    );
+                      ])
+                    ..setQuantity = 1);
+                  Navigator.pop(context);
                 },
-                minWidth: MediaQuery.sizeOf(context).width*0.45,
+                minWidth: MediaQuery.sizeOf(context).width * 0.45,
                 height: 55,
                 color: CustomColors.primary,
                 child: const Text("Add to cart",
