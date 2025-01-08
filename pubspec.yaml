@@ -10,7 +10,6 @@ dependencies:
   animate_do: ^3.3.4
   bloc: ^8.1.4
   dio: ^5.7.0
-  equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
@@ -18,6 +17,7 @@ dependencies:
     git:
       url: https://github.com/Sebastian0002/flutter_credit_card.git
       ref: master
+  flutter_launcher_icons: ^0.14.2
   flutter_stripe: ^11.3.0
   flutter_svg: ^2.0.16
   font_awesome_flutter: ^10.8.0
@@ -28,6 +28,11 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
+flutter_launcher_icons:
+  android: false
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/app_logo.png"
 
 flutter:
   uses-material-design: true
