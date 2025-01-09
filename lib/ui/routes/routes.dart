@@ -7,7 +7,7 @@ class Routes {
 
   static final Map<String,WidgetBuilder> routes = {
     HomePage.route : (_) => const HomePage(),
-    SuccesScreen.route : (_) => const SuccesScreen()
+    CartPage.route : (_) => const CartPage(),
   };
 
 }
