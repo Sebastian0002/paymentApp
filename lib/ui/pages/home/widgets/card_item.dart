@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:payment_app/domain/model/item.dart';
 import 'package:payment_app/ui/pages/description/description_page.dart';
 
@@ -68,7 +69,8 @@ class CardItem extends StatelessWidget {
               ],
             ),
           ),
-        ],
+        ]
+        .animate(interval: 150.ms).scale(duration: 300.ms)
       ),
     );
   }

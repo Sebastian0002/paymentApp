@@ -5,10 +5,22 @@ import 'package:payment_app/ui/pages/constants/constants.dart';
 import 'package:payment_app/ui/pages/description/widgets/widgets.dart';
 import 'package:payment_app/ui/theme/custom_colors.dart';
 
-class DescriptionPage extends StatelessWidget {
+class DescriptionPage extends StatefulWidget {
   const DescriptionPage({super.key, required this.item});
 
   final Item item;
+
+  @override
+  State<DescriptionPage> createState() => _DescriptionPageState();
+}
+
+class _DescriptionPageState extends State<DescriptionPage> {
+  late bool isLike;
+  @override
+  void initState() {
+    isLike = false;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +44,35 @@ class DescriptionPage extends StatelessWidget {
                 ),
               ),
             ),
-            actions: const [
-              CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Icon(
-                  Icons.favorite,
-                  color: Colors.red,
+            actions: [
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isLike = !isLike;
+                  });
+                },
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 250),
+                    transitionBuilder: (child, animation) {
+                      return ScaleTransition(scale: animation, child: child);
+                    },
+                    child: Icon(
+                      key: ValueKey(isLike),
+                      Icons.favorite,
+                      color: isLike ? Colors.red : Colors.black,
+                      size: 24,
+                    ),
+                  ),
                 ),
               ),
-              SizedBox(width: 10),
-              CircleAvatar(
+              const SizedBox(width: 10),
+              const CircleAvatar(
                 backgroundColor: Colors.white,
                 child: Icon(Icons.share, color: Colors.black),
               ),
-              SizedBox(width: 10)
+              const SizedBox(width: 10)
             ],
             expandedHeight: MediaQuery.sizeOf(context).height * 0.48,
             flexibleSpace: FlexibleSpaceBar(
@@ -54,8 +81,8 @@ class DescriptionPage extends StatelessWidget {
                   padding: const EdgeInsets.all(70),
                   color: Colors.grey[200],
                   child: Hero(
-                    tag: 'Image-hero-${item.image}',
-                    child: Image.asset(item.image))),
+                      tag: 'Image-hero-${widget.item.image}',
+                      child: Image.asset(widget.item.image))),
             ),
           ),
           SliverToBoxAdapter(
@@ -65,7 +92,7 @@ class DescriptionPage extends StatelessWidget {
                 topRight: Radius.circular(30),
               ),
               child: Container(
-                height: item.properties == null
+                height: widget.item.properties == null
                     ? (MediaQuery.sizeOf(context).height * 0.52) -
                         getHeightOfBottomNavigatior(context)
                     : null,
@@ -77,7 +104,7 @@ class DescriptionPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(item.name,
+                      Text(widget.item.name,
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.w600)),
                       const SizedBox(height: 10),
@@ -85,22 +112,22 @@ class DescriptionPage extends StatelessWidget {
                         children: [
                           BoxRate(
                             icon: const Icon(Icons.star, color: Colors.amber),
-                            text: item.stars,
+                            text: widget.item.stars,
                             ontap: () {},
                           ),
                           const SizedBox(width: 20),
                           BoxRate(
                             icon: Icon(FontAwesomeIcons.solidThumbsUp,
                                 size: 20, color: CustomColors.primary),
-                            text: item.likes.toString(),
+                            text: widget.item.likes.toString(),
                             ontap: () {},
                           ),
                         ],
                       ),
                       const SizedBox(height: 20),
-                      Text(item.description,
+                      Text(widget.item.description,
                           style: const TextStyle(fontSize: 15)),
-                      PropertiesDetails(item: item),
+                      PropertiesDetails(item: widget.item),
                     ],
                   ),
                 ),
@@ -109,7 +136,7 @@ class DescriptionPage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: CustomBottomNavigation(item: item),
+      bottomNavigationBar: CustomBottomNavigation(item: widget.item),
     );
   }
 }

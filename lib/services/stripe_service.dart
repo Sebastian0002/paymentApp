@@ -21,7 +21,7 @@ class StripeService {
     Stripe.publishableKey = _publishableKey;
   }
 
-  Future<StripeCustomResponse> normalPay({
+  Future<StripeCustomResponse> doPay({
     required String amount,
     required String currency,
   }) async {
@@ -43,11 +43,6 @@ class StripeService {
       return StripeCustomResponse(res: false, msg: e.toString());
     }
   }
-
-  Future payWithAppleGoogle({
-    required String amount,
-    required String currency,
-  }) async {}
 
   Future<PaymentIntentResponse?> _createPaymentIntent({
     required String amount,
@@ -73,32 +68,4 @@ class StripeService {
       return null;
     }
   }
-
-  // Future<StripeCustomResponse?> _doPayment(
-  //     {required String amount,
-  //     required String currency,
-  //     required PaymentMethod paymentMethod}) async {
-
-  //       try {
-  //         final intent = await _createPaymentIntent(amount: amount, currency: currency);
-  //         if(intent == null) return null;
-  //         final paymentResult = await Stripe.instance.confirmSetupIntent(
-  //           paymentIntentClientSecret: intent.clientSecret,
-  //           params: PaymentMethodParams.cardFromMethodId(
-  //             paymentMethodData: PaymentMethodDataCardFromMethod(paymentMethodId: paymentMethod.id)
-  //           )
-  //         );
-
-  //         if(paymentResult.status == 'succeeded'){
-  //           return StripeCustomResponse(res: true);
-  //         }
-  //         else{
-  //           return StripeCustomResponse(res: false, msg: 'error to procesing payment');
-  //         }
-
-  //       } catch (e) {
-  //         return StripeCustomResponse(res: false, msg: 'error: ${e.toString()}');
-  //       }
-
-  //     }
 }

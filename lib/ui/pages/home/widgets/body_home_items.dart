@@ -6,9 +6,14 @@ import 'package:payment_app/ui/pages/home/widgets/card_item.dart';
 import 'package:payment_app/ui/pages/widgets/widgets.dart';
 import 'package:payment_app/ui/theme/custom_colors.dart';
 
-class BodyHomeItems extends StatelessWidget {
+class BodyHomeItems extends StatefulWidget {
   const BodyHomeItems({super.key});
 
+  @override
+  State<BodyHomeItems> createState() => _BodyHomeItemsState();
+}
+
+class _BodyHomeItemsState extends State<BodyHomeItems> {
   @override
   Widget build(BuildContext context) {
     final itemCubit = context.read<ItemCubit>();
@@ -58,6 +63,7 @@ class BodyHomeItems extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 GridView.builder(
+                  key: ValueKey(state.category.index),
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

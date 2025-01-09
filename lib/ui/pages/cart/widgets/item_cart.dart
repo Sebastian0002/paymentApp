@@ -16,7 +16,7 @@ class ItemCart extends StatelessWidget {
       builder: (_, state) {
         final item = state.itemsCart[index];
         return SizedBox(
-          height: 150,
+          height: MediaQuery.sizeOf(context).height * 0.18,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -25,7 +25,7 @@ class ItemCart extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
                 padding: const EdgeInsets.all(15),
                 width: 130,
-                height: 150,
+                height: MediaQuery.sizeOf(context).height * 0.17,
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(20),
@@ -35,9 +35,9 @@ class ItemCart extends StatelessWidget {
               const SizedBox(width: 15),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
@@ -61,13 +61,15 @@ class ItemCart extends StatelessWidget {
                         ],
                       ),
                       ...item.finalProperties.map((e) {
-                        return Text(
-                          e != null ? e.toString() : '',
-                          style: TextStyle(
-                              color: Colors.grey[600],
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13),
-                        );
+                        return e != null
+                            ? Text(
+                                e.toString(),
+                                style: TextStyle(
+                                    color: Colors.grey[600],
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13),
+                              )
+                            : const SizedBox();
                       }),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

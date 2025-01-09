@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:payment_app/services/cubit/cubits.dart';
 import 'package:payment_app/ui/pages/cart/widgets/widgets.dart';
@@ -53,18 +54,27 @@ class CartPage extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Center(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                      width: MediaQuery.sizeOf(context).width,
-                      child: Image.asset('assets/empty_cart.png', fit: BoxFit.cover)),
-                      const Text('!Ups! it looks like you do not have any item added yet.', style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
-                      const SizedBox(height: 30),
-                      ElevatedButton(onPressed: (){
-                        Navigator.pop(context);
-                      }, child: const Text('¡Go Shop!', style: TextStyle(color: Colors.white),))
-                    ],
-                  )),
+                    child: Column(
+                  children: [
+                    SizedBox(
+                        width: MediaQuery.sizeOf(context).width,
+                        child: Image.asset('assets/empty_cart.png',
+                            fit: BoxFit.cover)),
+                    const Text(
+                        '!Ups! it looks like you do not have any item added yet.',
+                        style: TextStyle(fontSize: 18),
+                        textAlign: TextAlign.center),
+                    const SizedBox(height: 30),
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          '¡Go Shop!',
+                          style: TextStyle(color: Colors.white),
+                        ))
+                  ].animate(interval: 150.ms).scale(duration: 300.ms),
+                )),
               );
             } else {
               return _BodyItems(
@@ -89,13 +99,17 @@ class _BodyItems extends StatelessWidget {
           SizedBox(
             height: MediaQuery.sizeOf(context).height * 0.6,
             child: ListView.separated(
+              key: ValueKey(state.itemsCart.length),
               physics: const BouncingScrollPhysics(),
               separatorBuilder: (context, index) {
-                return const Divider(color: Colors.black12);
+                return const Divider(color: Colors.black12).animate().fade(duration: 500.ms);
               },
               itemCount: state.itemsCart.length,
               itemBuilder: (BuildContext context, int index) {
-                return ItemCart(index: index);
+                return ItemCart(index: index)
+                    .animate()
+                    .fade(duration: 300.ms)
+                    .flip();
               },
             ),
           ),

@@ -14,6 +14,7 @@ class CustomBottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartCubit = context.read<CartCubit>();
+    
     return Container(
       decoration: const BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(blurRadius: 2, color: Colors.black54, offset: Offset(0, 1))
@@ -40,8 +41,9 @@ class CustomBottomNavigation extends StatelessWidget {
                       image: item.image,
                       price: item.price,
                       finalProperties: [
-                        item.properties?.colors?[0],
-                        item.properties?.storages?[0],
+                        item.defaultStorage,
+                        item.defaultColor,
+                        item.defaultSize,
                       ])
                     ..setQuantity = 1);
                   Navigator.pop(context);

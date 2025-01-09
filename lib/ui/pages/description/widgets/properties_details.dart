@@ -44,7 +44,7 @@ class PropertiesDetails extends StatelessWidget {
                         
                       },
                       child: CardSelected(
-                          isSelected: false,
+                          isSelected: index == 0 ? true : false,
                           title:
                               "${getConvertedStorage(storages[index])} ${getStorageReference(storages[index])}"),
                     );
@@ -83,7 +83,7 @@ class PropertiesDetails extends StatelessWidget {
 
                       },
                       child: CardSelected(
-                          isSelected: false,
+                          isSelected: index == 0 ? true : false,
                           title: colors[index]),
                     );
                   },
@@ -119,7 +119,7 @@ class PropertiesDetails extends StatelessWidget {
                     return InkWell(
                       onTap: (){},
                       child: CardSelected(
-                          isSelected: false,
+                          isSelected: index == 0 ? true : false,
                           title: sizes[index]),
                     );
                   },

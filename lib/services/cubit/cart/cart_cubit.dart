@@ -51,7 +51,7 @@ class CartCubit extends Cubit<CartState> {
 
   Future<StripeCustomResponse> doPay()async{
     final String amount = (state.total*100).floor().toString();
-    final res = await _stripe.normalPay(amount: amount, currency: state.currency);
+    final res = await _stripe.doPay(amount: amount, currency: state.currency);
     if(res.res) emit(CartInitial());
     return res;
   }
