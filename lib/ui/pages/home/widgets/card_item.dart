@@ -46,6 +46,8 @@ class CardItem extends StatelessWidget {
                     SizedBox(
                         width: 95,
                         child: Text(
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
                           item.name,
                           style: TextStyle(
                               fontWeight: FontWeight.w600,

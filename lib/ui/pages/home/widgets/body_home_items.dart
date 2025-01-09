@@ -67,7 +67,7 @@ class _BodyHomeItemsState extends State<BodyHomeItems> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 0.7,
+                      childAspectRatio: 0.66,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 5,
                       crossAxisCount: 2),
